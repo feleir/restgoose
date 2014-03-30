@@ -20,7 +20,7 @@ module.exports = function(app) {
 
 		return {
 			getAll: function() {
-				app.get('/api/' + apiName, function(req, res) {
+				app.get('/api/' + apiName, [], function(req, res) {
 					mongooseModel.find({}, function(err, items) {
 						res.send(apiCallback(err,items));
 					});
@@ -28,7 +28,7 @@ module.exports = function(app) {
 				return this;
 			},
 			getItem: function() {
-				app.get('/api/' + apiName + '/:id', function(req, res) {
+				app.get('/api/' + apiName + '/:id', [], function(req, res) {
 					mongooseModel.findById(req.params.id, function(err, item) {
 						res.send(apiCallback(err,item));
 					});
@@ -36,7 +36,7 @@ module.exports = function(app) {
 				return this;
 			},
 			insert: function() {
-				app.post('/api/' + apiName, function (req, res){
+				app.post('/api/' + apiName, [], function (req, res){
 					var newModel = new mongooseModel(req.body);
 				    newModel.save(function (err) {
 						res.send(apiCallback(err,newModel));
@@ -45,7 +45,7 @@ module.exports = function(app) {
 				return this;		
 			},
 			update: function () {
-				app.post('/api/' + apiName + '/:id', function(req, res) {
+				app.post('/api/' + apiName + '/:id', [], function(req, res) {
 					mongooseModel.findById(req.params.id, function (err, item) {
 						if (!err) {
 							if (item === null) {
@@ -65,7 +65,7 @@ module.exports = function(app) {
 				return this;
 			},
 			remove: function() {
-				app.delete('/api/' + apiName + '/:id', function (req, res){
+				app.delete('/api/' + apiName + '/:id', [], function (req, res){
 					mongooseModel.findByIdAndRemove(req.params.id, function(err) {
 						return res.send(apiCallback(err,apiName + ' ' + req.params.id +  ' deleted'));
 					});
