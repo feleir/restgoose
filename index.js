@@ -6,11 +6,8 @@ module.exports = function(app) {
 		if (!!!model)
 			throw new Error('Model cannot be null');
 		if (!!!model.name || model.model.name !== 'model')
-			throw 'Model needs to be a Mongoose model';
+			throw new Error('Model needs to be a Mongoose model');
 
-		if (model.constructor.name === 'model') {
-		 	console.log('is a model');
-		}
 		var app = this,
 			mongooseModel = model,
 			apiName = mongooseModel.modelName,
