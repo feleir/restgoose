@@ -31,7 +31,7 @@ describe('API: Delete', function() {
 				if (err)
 					throw err;
 				res.body.iserror.should.not.be.ok;
-				res.body.result.should.equal('Test 5335f942309c21050740c434 successfully deleted');
+				res.body.result.should.equal('Test 5335f942309c21050740c434 deleted');
 				done();
 		    });
 	});
@@ -49,7 +49,7 @@ describe('API: Delete', function() {
 					if (err)
 						throw err;
 					res.body.iserror.should.not.be.ok;
-					res.body.result.should.equal('Test ' + newText.id + ' successfully deleted');
+					res.body.result.should.equal('Test ' + newText.id + ' deleted');
 					done();
 			    });		    
 			}

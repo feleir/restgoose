@@ -29,8 +29,8 @@ describe('API: Update', function() {
 			.end(function(err, res) {
 				if (err)
 					throw err;
-				res.body.iserror.should.not.be.ok;
-				should.not.exists(res.body.result);
+				res.body.iserror.should.be.ok;
+				res.body.error.should.equal('Invalid item identifier 5335f942309c21050740c434');
 				done();
 		    });
 	});
