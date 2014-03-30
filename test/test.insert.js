@@ -35,6 +35,21 @@ describe('API: Insert', function() {
 				done();
 		    });
 	});
+
+	it('insert item middleware should be call', function(done) {
+		request(url)
+			.post('/api/middleware')
+			.send({ name: 'Test Name' })
+		    // end handles the response
+			.end(function(err, res) {
+				if (err)
+					throw err;
+				res.body.iserror.should.not.be.ok;
+				res.body.result.name.should.equal('Middleware 2');
+				res.body.result._id.should.exists;
+				done();
+		    });
+	});
 });
 
 
