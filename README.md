@@ -18,7 +18,7 @@ var mongoose = require('mongoose'),
 	  app = express();
 
 	var TestModel = mongoose.model('Test', { name: {type: String, required: true } });
-	require('../index.js')(app);
+	require('apigoose')(app);
 	app.use(express.json());
 	app.use(express.urlencoded());
 	app.apiFromModel(TestModel)
