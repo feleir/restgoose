@@ -1,19 +1,20 @@
 {
-  "name": "mongooseapi",
+  "name": "restgoose",
   "version": "0.0.1",
   "description": "Mongoose rest api helpers.",
   "main": "index.js",
+  "keywords": ["mongoose", "rest", "api", "schema", "database", "mongodb"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^3.5.1",
-    "mongoose": "^3.8.8",
-    "mocha": "^1.18.2",
-    "should": "^3.2.0-beta1",
-    "mockgoose": "^1.8.1",
-    "supertest": "^0.10.0"
+    "express": "~3.5.1",
+    "mongoose": "~3.8.8",
+    "mocha": "~1.18.2",
+    "should": "~3.2.0-beta1",
+    "mockgoose": "~1.8.1",
+    "supertest": "~0.10.0"
   }
 }
