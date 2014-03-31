@@ -4,6 +4,8 @@ restgoose
 An easy to use module to create a rest api for a mongoose model.
 
 * [How its works](#how-its-works)
+* [Methods](#methods)
+* [Unit tests](#uni tests)
 
 ### How Its works
 
@@ -15,14 +17,16 @@ var mongoose = require('mongoose'),
 	  express = require('express'),
 	  app = express();
 
-  var TestModel = mongoose.model('Test', { name: {type: String, required: true } });
-  require('../index.js')(app);
-  app.apiFromModel(TestModel)
-				.getAll()
-				.getItem()
-				.insert()
-				.update()
-				.remove();
+	var TestModel = mongoose.model('Test', { name: {type: String, required: true } });
+	require('../index.js')(app);
+	app.use(express.json());
+	app.use(express.urlencoded());
+	app.apiFromModel(TestModel)
+		.getAll()
+		.getItem()
+		.insert()
+		.update()
+		.remove();
 ```
 
 ### Methods
@@ -56,4 +60,7 @@ Adds a new post route to the express app **/api/ModelName/:id** which will try t
 5) delete(middleware....)
 Adds a new delete route to the express app **/api/ModelName/:id** which will try to delete the object with the requested id
 
+### Unit tests
+
+Full unit tests coverage and examples can be found in the **test** folder.
 
