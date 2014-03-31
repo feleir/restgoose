@@ -5,7 +5,7 @@ An easy to use module to create a rest api for a mongoose model.
 
 * [How its works](#how-its-works)
 * [Methods](#methods)
-* [Unit tests](#uni tests)
+* [Unit tests](#unit-tests)
 
 ### How Its works
 
