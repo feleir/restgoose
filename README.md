@@ -24,3 +24,36 @@ var mongoose = require('mongoose'),
 				.update()
 				.remove();
 ```
+
+### Methods
+
+Every method accept as arguments middleware functions.
+
+```javascript
+	var MiddleWareModel = mongoose.model('Middleware', { name: {type: String, required: true } });
+	app.apiFromModel(MiddleWareModel)
+	  	.insert(function(req, res, next) {
+	  		req.body.name = 'Middleware 1';
+	  		next();
+	  	}, function(req, res, next) {
+	  		req.body.name = 'Middleware 2';
+	  		next();
+	  	});
+```
+
+1) getAll(middleware....)
+Adds a new get route to the express app **/api/ModelName** which returns all the objects in for the model
+
+2) getItem(middleware....)
+Adds a new get route to the express app **/api/ModelName/:id** which returns the object with the requested id
+
+3) insert(middleware....)
+Adds a new post route to the express app **/api/ModelName** which will try to insert a new object with the information send in the request, mongoose takes care of the validation
+
+4) update(middleware....)
+Adds a new post route to the express app **/api/ModelName/:id** which will try to update the object with the requested id with the information send in the request, mongoose takes care of the validation
+
+5) delete(middleware....)
+Adds a new delete route to the express app **/api/ModelName/:id** which will try to delete the object with the requested id
+
+
