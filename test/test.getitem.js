@@ -15,9 +15,7 @@ describe('API: GetItem', function() {
 				if (err)
 					throw err;
 				res.body.iserror.should.be.ok;
-				res.body.error.name.should.equal('CastError');
-				res.body.error.value.should.equal('112323');
-				res.body.error.message.should.equal('Cast to ObjectId failed for value "112323" at path "_id"');
+				res.body.error.should.equal('Invalid item identifier');
 				done();
 		    });
 	});
@@ -29,8 +27,8 @@ describe('API: GetItem', function() {
 			.end(function(err, res) {
 				if (err)
 					throw err;
-				res.body.iserror.should.not.be.ok;
-				should.not.exists(res.body.result);
+				res.body.iserror.should.be.ok;
+				res.body.error.should.equal('Test 5335f942309c21050740c434 not found');
 				done();
 		    });
 	});
