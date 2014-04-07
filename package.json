@@ -1,6 +1,6 @@
 {
   "name": "apigoose",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Mongoose rest api helpers.",
   "main": "index.js",
   "keywords": ["mongoose", "rest", "api", "schema", "database", "mongodb"],
