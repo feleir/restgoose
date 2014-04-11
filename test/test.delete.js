@@ -15,10 +15,9 @@ describe('API: Delete', function() {
 			.end(function(err, res) {
 				if (err)
 					throw err;
+				console.log(res.body);
 				res.body.iserror.should.be.ok;
-				res.body.error.name.should.equal('CastError');
-				res.body.error.value.should.equal('112323');
-				res.body.error.message.should.equal('Cast to ObjectId failed for value "112323" at path "_id"');
+				res.body.error.should.equal('Invalid item identifier');
 				done();
 		    });
 	});

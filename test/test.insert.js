@@ -44,9 +44,7 @@ describe('API: Insert', function() {
 			.end(function(err, res) {
 				if (err)
 					throw err;
-				res.body.iserror.should.not.be.ok;
-				res.body.result.name.should.equal('Middleware 2');
-				res.body.result._id.should.exists;
+				res.body.name.should.equal('Post middleware');
 				done();
 		    });
 	});

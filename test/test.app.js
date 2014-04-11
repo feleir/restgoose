@@ -31,12 +31,15 @@ describe('API: Create app', function() {
 				.remove();
 
 			app.apiFromModel(MiddleWareModel)
-		  		.insert(function(req, res, next) {
+		  		.insert([function(req, res, next) {
 		  			req.body.name = 'Middleware 1';
 		  			next();
 		  		}, function(req, res, next) {
 		  			req.body.name = 'Middleware 2';
 		  			next();
+		  		}], function(req, res, err, model ) {
+		  			model.name = 'Post middleware';
+		  			res.send(model);
 		  		});
 		  	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 		});
