@@ -29,11 +29,28 @@ describe('API: Insert', function() {
 				if (err)
 					throw err;
 				res.body.iserror.should.be.ok;
-				res.body.error.should.equal('Validation failed because description is required and name is required');
+				res.body.error.should.equal('Validation failed because value, description and name are required');
 				done();
 		    });
 	});
-	
+	it('insert should throw error when a cast fails', function(done) {
+		request(url)
+			.post('/api/cast')
+			.send(
+			{
+				value: 'eqweqweqwe'
+			})
+		    // end handles the response
+			.end(function(err, res) {
+				if (err)
+					throw err;
+				res.body.iserror.should.be.ok;
+				console.log(res.body.error);
+				res.body.error.should.equal('Unable to cast value to number');
+				done();
+		    });
+	});
+
 	it('insert item should return item details', function(done) {
 		request(url)
 			.post('/api/test')
