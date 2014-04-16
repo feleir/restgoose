@@ -47,8 +47,7 @@ describe('API: Update', function() {
 					if (err)
 						throw err;
 					res.body.iserror.should.be.ok;
-					res.body.error.name.should.equal('ValidationError');
-					res.body.error.message.should.equal('Validation failed');
+					res.body.error.should.equal('Validation failed because name is required');
 					done();
 			    });
 		    }

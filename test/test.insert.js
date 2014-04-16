@@ -5,6 +5,7 @@ var assert = require("assert"),
 
 describe('API: Insert', function() {
 	var TestModel = mongoose.model('Test'),
+		MultipleModels = mongoose.model('Multiple'),
 		url = 'http://localhost:8888';
 
 	it('insert should throw error when a required field is not provided', function(done) {
@@ -15,8 +16,20 @@ describe('API: Insert', function() {
 				if (err)
 					throw err;
 				res.body.iserror.should.be.ok;
-				res.body.error.name.should.equal('ValidationError');
-				res.body.error.message.should.equal('Validation failed');
+				res.body.error.should.equal('Validation failed because name is required');
+				done();
+		    });
+	});
+
+	it('insert should throw error when a multiple required field are not provided', function(done) {
+		request(url)
+			.post('/api/multiple')
+		    // end handles the response
+			.end(function(err, res) {
+				if (err)
+					throw err;
+				res.body.iserror.should.be.ok;
+				res.body.error.should.equal('Validation failed because description is required and name is required');
 				done();
 		    });
 	});

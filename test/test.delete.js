@@ -15,7 +15,6 @@ describe('API: Delete', function() {
 			.end(function(err, res) {
 				if (err)
 					throw err;
-				console.log(res.body);
 				res.body.iserror.should.be.ok;
 				res.body.error.should.equal('Invalid item identifier');
 				done();

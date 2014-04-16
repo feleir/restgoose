@@ -13,6 +13,8 @@ mongoose.connect('mongodb://mongoose/test');
 describe('API: Create app', function() {
 	var TestModel = mongoose.model('Test', { name: {type: String, required: true } }),
 		MiddleWareModel = mongoose.model('Middleware', { name: {type: String, required: true } }),
+		MultipleModels = mongoose.model('Multiple', { name: {type: String, required: true }
+			, description: { type: String, required: true } })
 		url = 'http://localhost:8888';
 
 	before(function(done) {
@@ -29,7 +31,6 @@ describe('API: Create app', function() {
 				.insert()
 				.update()
 				.remove();
-
 			app.apiFromModel(MiddleWareModel)
 		  		.insert([function(req, res, next) {
 		  			req.body.name = 'Middleware 1';
@@ -41,6 +42,11 @@ describe('API: Create app', function() {
 		  			model.name = 'Post middleware';
 		  			res.send(model);
 		  		});
+
+			app.apiFromModel(MultipleModels)
+				.insert();
+				
+
 		  	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 		});
 
@@ -56,11 +62,12 @@ describe('API: Create app', function() {
 		app.routes.get.length.should.equal(2);
 		app.routes.get[0].path.should.equal('/api/Test');
 		app.routes.get[1].path.should.equal('/api/Test/:id');
-		app.routes.post.length.should.equal(3);
+		app.routes.post.length.should.equal(4);
 		app.routes.post[0].path.should.equal('/api/Test');
 		app.routes.post[1].path.should.equal('/api/Test/:id');
 		app.routes.post[2].path.should.equal('/api/Middleware');
-
+		app.routes.post[3].path.should.equal('/api/Multiple');
+		
 		app.routes.delete[0].path.should.equal('/api/Test/:id');
 		done();
 	});
